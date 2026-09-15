@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dilg123jwx2ky"]
+
+[ext_resource type="Script" uid="uid://cr3va8riy8e0b" path="res://scripts/data/card_data.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ci4aiyv76hush" path="res://art/cards/artworks/test_dragon.jpg" id="2_art"]
+
+[resource]
+script = ExtResource("1_script")
+card_id = "UNIT_007"
+card_name = "Lobo de Brasa"
+description = "Ataca con fuerza, pero resiste poco daño."
+cost = 2
+attack = 3
+artwork = ExtResource("2_art")

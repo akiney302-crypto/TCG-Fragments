@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bjt8bve3vf338"]
+
+[node name="HandZone" type="Control" unique_id=2100165084]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1197543369]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CardContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=594512016]
+layout_mode = 2

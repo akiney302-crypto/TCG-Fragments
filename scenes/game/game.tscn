@@ -1,0 +1,469 @@
+[gd_scene format=3 uid="uid://dmqky3vuy3nsj"]
+
+[ext_resource type="Script" uid="uid://bmhoc0pvhgwj3" path="res://scripts/ui/game.gd" id="1_7h61r"]
+[ext_resource type="PackedScene" uid="uid://ckbusbn7f2a1c" path="res://scenes/ui/card_inspector.tscn" id="3_bdhmt"]
+[ext_resource type="Script" uid="uid://dapijpvmqb1aw" path="res://scripts/systems/deck_manager.gd" id="4_87uf6"]
+[ext_resource type="Script" uid="uid://dd1qwfght0mrj" path="res://scripts/systems/turn_manager.gd" id="5_2a8rs"]
+[ext_resource type="Script" uid="uid://bjfutty7syu4s" path="res://scripts/systems/rule_manager.gd" id="6_4j704"]
+[ext_resource type="Script" uid="uid://ba42pg67gm415" path="res://scripts/systems/game_manager.gd" id="7_5jirj"]
+[ext_resource type="Script" uid="uid://cj4b2q4oe15s5" path="res://scripts/systems/combat_manager.gd" id="7_kp23o"]
+[ext_resource type="Script" path="res://scripts/systems/opponent_controller.gd" id="9_ai"]
+[ext_resource type="Script" uid="uid://b0g4cnxtaicp8" path="res://scripts/systems/effect_manager.gd" id="10_effects"]
+[ext_resource type="Resource" uid="uid://c05oxgsr6qxa" path="res://resources/decks/demo_deck.tres" id="8_demo"]
+[ext_resource type="Script" path="res://scripts/ui/zone_frame.gd" id="11_zone"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_zone"]
+bg_color = Color(0.06, 0.1, 0.15, 0.82)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18, 0.42, 0.58, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+
+[node name="game" type="Control" unique_id=523691153]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_7h61r")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1006260309]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.035, 0.055, 0.08, 1)
+mouse_filter = 2
+
+[node name="SafeArea" type="MarginContainer" parent="." unique_id=1629581820]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="MainLayout" type="VBoxContainer" parent="SafeArea" unique_id=2058125180]
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="SafeArea/MainLayout" unique_id=1977815214]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_constants/separation = 16
+custom_minimum_size = Vector2(0, 48)
+
+[node name="TurnLabel" type="Label" parent="SafeArea/MainLayout/TopBar" unique_id=1221081312]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="LifeLabel" type="Label" parent="SafeArea/MainLayout/TopBar" unique_id=34100807]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="OpponentLifeLabel" type="Label" parent="SafeArea/MainLayout/TopBar" unique_id=34100808]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="SafeArea/MainLayout/TopBar" unique_id=34100809]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="PhaseLabel" type="Label" parent="SafeArea/MainLayout/TopBar" unique_id=34100810]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="OpponentHandLabel" type="Label" parent="SafeArea/MainLayout/TopBar" unique_id=34100811]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+visible = false
+
+[node name="EnergyLabel" type="Label" parent="SafeArea/MainLayout/TopBar" unique_id=253264867]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="PauseButton" type="Button" parent="SafeArea/MainLayout/TopBar" unique_id=253264868]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+text = "MENU"
+
+[node name="Board" type="Control" parent="SafeArea/MainLayout" unique_id=1658582267]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OpponentFieldFrame" type="Panel" parent="SafeArea/MainLayout/Board" unique_id=1658582268]
+ layout_mode = 1
+ anchors_preset = 10
+ anchor_right = 1.0
+ offset_top = 8.0
+ offset_bottom = 110.0
+ grow_horizontal = 2
+ mouse_filter = 2
+ theme_override_styles/panel = SubResource("StyleBoxFlat_zone")
+
+[node name="PlayerFieldFrame" type="Panel" parent="SafeArea/MainLayout/Board" unique_id=1658582269]
+ layout_mode = 1
+ anchors_preset = 12
+ anchor_right = 1.0
+ anchor_bottom = 1.0
+ offset_top = 120.0
+ offset_bottom = -238.0
+ grow_horizontal = 2
+ grow_vertical = 2
+ mouse_filter = 2
+ theme_override_styles/panel = SubResource("StyleBoxFlat_zone")
+
+[node name="SelectedPreview" type="Control" parent="SafeArea/MainLayout/Board" unique_id=1658582270]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 132.0
+offset_right = 190.0
+offset_bottom = 380.0
+mouse_filter = 2
+
+[node name="PreviewTitle" type="Label" parent="SafeArea/MainLayout/Board/SelectedPreview" unique_id=1658582271]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 22.0
+text = "CARTA SELECCIONADA"
+horizontal_alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="SafeArea/MainLayout/Board" unique_id=1658582272]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -55.0
+offset_right = 180.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.95, 0.9, 0.55, 1)
+theme_override_font_sizes/font_size = 30
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+z_index = 30
+
+[node name="OpponentArea" type="Control" parent="SafeArea/MainLayout/Board" unique_id=2129817596]
+anchors_preset = 0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 72.0
+grow_horizontal = 2
+
+[node name="CardContainer" type="HBoxContainer" parent="SafeArea/MainLayout/Board/OpponentArea" unique_id=2129817597]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -50.0
+offset_right = 220.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="HandContainer" type="HBoxContainer" parent="SafeArea/MainLayout/Board/OpponentArea" unique_id=2129817598]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 2.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_constants/separation = -42
+alignment = 1
+
+[node name="PlayerArea" type="VBoxContainer" parent="SafeArea/MainLayout/Board" unique_id=2008257576]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 205.0
+offset_top = 128.0
+offset_left = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="FieldZone" type="VBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea" unique_id=83938802]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 180)
+script = ExtResource("11_zone")
+
+[node name="ZoneTitle" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone" unique_id=256530135]
+layout_mode = 2
+text = "CAMPO"
+
+[node name="FieldCountLabel" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone" unique_id=256530136]
+layout_mode = 2
+text = "Campo: 0"
+
+[node name="CardContainer" type="HBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone" unique_id=1069750757]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="SpecialZones" type="HBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone" unique_id=1069750758]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 86)
+theme_override_constants/separation = 10
+
+[node name="TruthZone" type="VBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone/SpecialZones" unique_id=1069750759]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+script = ExtResource("11_zone")
+
+[node name="TitleLabel" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone/SpecialZones/TruthZone" unique_id=1069750760]
+layout_mode = 2
+text = "TRUTH 3 MAX"
+
+[node name="CountLabel" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone/SpecialZones/TruthZone" unique_id=1069750761]
+layout_mode = 2
+text = "Truth: 0 / 3"
+
+[node name="CardContainer" type="HBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone/SpecialZones/TruthZone" unique_id=1069750762]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SecretsZone" type="VBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone/SpecialZones" unique_id=1069750763]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+script = ExtResource("11_zone")
+
+[node name="TitleLabel" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone/SpecialZones/SecretsZone" unique_id=1069750764]
+layout_mode = 2
+text = "SECRETS 2 MAX"
+
+[node name="CountLabel" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone/SpecialZones/SecretsZone" unique_id=1069750765]
+layout_mode = 2
+text = "Secrets: 0 / 2"
+
+[node name="CardContainer" type="HBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/FieldZone/SpecialZones/SecretsZone" unique_id=1069750766]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LowerZones" type="HBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea" unique_id=1890036212]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 118)
+alignment = 2
+
+[node name="LowerSpacer" type="Control" parent="SafeArea/MainLayout/Board/PlayerArea/LowerZones" unique_id=1890036213]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DeckStack" type="VBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/LowerZones" unique_id=1890036214]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DeckZone" type="VBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/LowerZones/DeckStack" unique_id=2117311745]
+custom_minimum_size = Vector2(160, 0)
+custom_maximum_size = Vector2(180, -1)
+layout_mode = 2
+ theme_override_constants/separation = 5
+script = ExtResource("11_zone")
+
+[node name="ZoneTitle" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/LowerZones/DeckStack/DeckZone" unique_id=2054278490]
+layout_mode = 2
+text = "MAZO"
+
+[node name="DeckCountLabel" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/LowerZones/DeckStack/DeckZone" unique_id=2029283676]
+layout_mode = 2
+
+[node name="CardBackContainer" type="HBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/LowerZones/DeckStack/DeckZone" unique_id=2029283677]
+ custom_minimum_size = Vector2(72, 104)
+ layout_mode = 2
+
+[node name="GraveyardZone" type="VBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/LowerZones/DeckStack" unique_id=1124788787]
+custom_minimum_size = Vector2(180, 0)
+custom_maximum_size = Vector2(220, -1)
+layout_mode = 2
+ theme_override_constants/separation = 5
+script = ExtResource("11_zone")
+
+[node name="ZoneTitle" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/LowerZones/DeckStack/GraveyardZone" unique_id=1596601397]
+layout_mode = 2
+text = "CEMENTERIO"
+
+[node name="GraveyardCountLabel" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/LowerZones/DeckStack/GraveyardZone" unique_id=1298475396]
+layout_mode = 2
+
+[node name="CardContainer" type="HBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/LowerZones/DeckStack/GraveyardZone" unique_id=1725272817]
+layout_mode = 2
+
+[node name="HandZone" type="VBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea" unique_id=1275778702]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 210)
+ theme_override_constants/separation = 5
+
+[node name="ZoneTitle" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/HandZone" unique_id=1668134869]
+layout_mode = 2
+text = "MANO"
+
+[node name="HandCountLabel" type="Label" parent="SafeArea/MainLayout/Board/PlayerArea/HandZone" unique_id=1459861392]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SafeArea/MainLayout/Board/PlayerArea/HandZone" unique_id=1704664863]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="CardContainer" type="HBoxContainer" parent="SafeArea/MainLayout/Board/PlayerArea/HandZone/ScrollContainer" unique_id=1735344814]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="ActionBar" type="HBoxContainer" parent="SafeArea/MainLayout" unique_id=767986952]
+layout_mode = 2
+theme_override_constants/separation = 12
+custom_minimum_size = Vector2(0, 64)
+
+[node name="PlayButton" type="Button" parent="SafeArea/MainLayout/ActionBar" unique_id=250507398]
+custom_minimum_size = Vector2(0, 56)
+custom_maximum_size = Vector2(-1, 64)
+layout_mode = 2
+text = "JUGAR CARTA"
+
+[node name="AttackButton" type="Button" parent="SafeArea/MainLayout/ActionBar" unique_id=1528507237]
+custom_minimum_size = Vector2(0, 56)
+custom_maximum_size = Vector2(-1, 64)
+layout_mode = 2
+text = "ATACAR DIRECTO"
+
+[node name="AttackUnitButton" type="Button" parent="SafeArea/MainLayout/ActionBar" unique_id=1528507238]
+custom_minimum_size = Vector2(0, 56)
+custom_maximum_size = Vector2(-1, 64)
+layout_mode = 2
+text = "ATACAR UNIDAD"
+
+[node name="DiscardButton" type="Button" parent="SafeArea/MainLayout/ActionBar" unique_id=1437617666]
+custom_minimum_size = Vector2(0, 56)
+custom_maximum_size = Vector2(-1, 64)
+layout_mode = 2
+text = "DESCARTAR"
+
+[node name="EndTunButton" type="Button" parent="SafeArea/MainLayout/ActionBar" unique_id=1281020446]
+custom_minimum_size = Vector2(0, 56)
+custom_maximum_size = Vector2(-1, 64)
+layout_mode = 2
+text = "TERMINAR TURNO"
+
+[node name="RestartButton" type="Button" parent="SafeArea/MainLayout/ActionBar" unique_id=1281020447]
+custom_minimum_size = Vector2(0, 56)
+custom_maximum_size = Vector2(-1, 64)
+layout_mode = 2
+text = "REINICIAR"
+
+[node name="PhaseButton" type="Button" parent="SafeArea/MainLayout/ActionBar" unique_id=1281020448]
+custom_minimum_size = Vector2(0, 56)
+custom_maximum_size = Vector2(-1, 64)
+layout_mode = 2
+text = "PASAR A COMBATE"
+
+[node name="CardInspector" parent="." unique_id=2107240391 instance=ExtResource("3_bdhmt")]
+layout_mode = 0
+mouse_filter = 2
+
+[node name="PausePanel" type="Control" parent="." unique_id=2107240392]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+process_mode = 3
+mouse_filter = 1
+z_index = 50
+
+[node name="Panel" type="PanelContainer" parent="PausePanel" unique_id=2107240393]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -130.0
+offset_right = 180.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="PausePanel/Panel" unique_id=2107240394]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Buttons" type="VBoxContainer" parent="PausePanel/Panel/Margin" unique_id=2107240395]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="PausePanel/Panel/Margin/Buttons" unique_id=2107240396]
+layout_mode = 2
+text = "PARTIDA EN PAUSA"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PausePanel/Panel/Margin/Buttons" unique_id=2107240397]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "CONTINUAR"
+
+[node name="MenuButton" type="Button" parent="PausePanel/Panel/Margin/Buttons" unique_id=2107240398]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "ABANDONAR PARTIDA"
+
+[node name="GameManager" type="Node" parent="." unique_id=1718176992]
+script = ExtResource("7_5jirj")
+player_deck_data = ExtResource("8_demo")
+enemy_deck_data = ExtResource("8_demo")
+
+[node name="PlayerDeckManager" type="Node" parent="GameManager" unique_id=112097823]
+script = ExtResource("4_87uf6")
+
+[node name="EnemyDeckManager" type="Node" parent="GameManager" unique_id=1043803583]
+script = ExtResource("4_87uf6")
+
+[node name="RuleManager" type="Node" parent="GameManager" unique_id=1802170948]
+script = ExtResource("6_4j704")
+
+[node name="TurnManager" type="Node" parent="GameManager" unique_id=1143260821]
+script = ExtResource("5_2a8rs")
+
+[node name="CombatManager" type="Node" parent="GameManager" unique_id=941734627]
+script = ExtResource("7_kp23o")
+
+[node name="OpponentController" type="Node" parent="GameManager" unique_id=941734628]
+script = ExtResource("9_ai")
+
+[node name="EffectManager" type="Node" parent="GameManager" unique_id=941734629]
+script = ExtResource("10_effects")

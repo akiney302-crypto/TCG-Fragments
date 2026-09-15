@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://w1uf0fsrssaj"]
+
+[ext_resource type="Texture2D" uid="uid://c1o6wiu7bc8vd" path="res://art/cards/artworks/test_spell.jpg" id="1_2sv78"]
+[ext_resource type="Script" uid="uid://cr3va8riy8e0b" path="res://scripts/data/card_data.gd" id="1_mdh2h"]
+
+[resource]
+script = ExtResource("1_mdh2h")
+card_id = "002"
+card_name = "Verdad Incandescente"
+description = "Al jugarla, inflige 2 de dano al jugador rival."
+card_type = "TRUTH"
+cost = 2
+effect_trigger = "ON_PLAY"
+effect_action = "DAMAGE_PLAYER"
+effect_value = 2
+artwork = ExtResource("1_2sv78")
+metadata/_custom_type_script = "uid://cr3va8riy8e0b"

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ckbusbn7f2a1c"]
+
+[ext_resource type="Script" uid="uid://dvpocj7rxsp3c" path="res://scripts/ui/card_inspector.gd" id="1_mfi4g"]
+
+[node name="CardInspector" type="Control" unique_id=2107240391]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mfi4g")

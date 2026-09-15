@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DeckData" format=3 uid="uid://c05oxgsr6qxa"]
+
+[ext_resource type="Script" uid="uid://cqr2einmhjw5f" path="res://scripts/data/deck_data.gd" id="1_deck"]
+[ext_resource type="Script" uid="uid://cr3va8riy8e0b" path="res://scripts/data/card_data.gd" id="1_hwfaf"]
+[ext_resource type="Resource" uid="uid://d1oaamxvku36s" path="res://resources/cards/test_guard.tres" id="2_guard"]
+[ext_resource type="Resource" uid="uid://c4pqnioy13h2e" path="res://resources/cards/test_dragon.tres" id="3_dragon"]
+[ext_resource type="Resource" path="res://resources/cards/swift_scout.tres" id="6_scout"]
+[ext_resource type="Resource" path="res://resources/cards/stone_sentinel.tres" id="7_sentinel"]
+[ext_resource type="Resource" path="res://resources/cards/ember_wolf.tres" id="8_wolf"]
+[ext_resource type="Resource" path="res://resources/cards/soul_archer.tres" id="9_archer"]
+[ext_resource type="Resource" path="res://resources/cards/shadow_stalker.tres" id="10_stalker"]
+[ext_resource type="Resource" path="res://resources/cards/dawn_guardian.tres" id="11_guardian"]
+[ext_resource type="Resource" path="res://resources/cards/soul_golem.tres" id="12_golem"]
+[ext_resource type="Resource" path="res://resources/cards/ancient_titan.tres" id="13_titan"]
+
+[resource]
+script = ExtResource("1_deck")
+deck_name = "Demo Fragmenta Animae"
+cards = Array[ExtResource("1_hwfaf")]([ExtResource("2_guard"), ExtResource("2_guard"), ExtResource("2_guard"), ExtResource("3_dragon"), ExtResource("6_scout"), ExtResource("6_scout"), ExtResource("7_sentinel"), ExtResource("7_sentinel"), ExtResource("8_wolf"), ExtResource("8_wolf"), ExtResource("9_archer"), ExtResource("9_archer"), ExtResource("10_stalker"), ExtResource("10_stalker"), ExtResource("11_guardian"), ExtResource("11_guardian"), ExtResource("12_golem"), ExtResource("12_golem"), ExtResource("13_titan"), ExtResource("13_titan")])

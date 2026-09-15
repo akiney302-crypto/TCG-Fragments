@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bfk88t3nugljk"]
+
+[ext_resource type="Script" uid="uid://cr3va8riy8e0b" path="res://scripts/data/card_data.gd" id="1_meogi"]
+
+[resource]
+script = ExtResource("1_meogi")
+card_id = "003"
+card_name = "Secreto Quebrado"
+description = "Al revelarse, inflige 2 de dano a la unidad rival mas debil."
+card_type = "SECRETS"
+cost = 1
+effect_trigger = "NONE"
+effect_action = "DAMAGE_UNIT"
+effect_value = 2
+secret_trigger = "OPPONENT_ATTACK"
+metadata/_custom_type_script = "uid://cr3va8riy8e0b"

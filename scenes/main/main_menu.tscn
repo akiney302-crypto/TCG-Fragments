@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://3k53cqyysq68"]
+
+[ext_resource type="Script" uid="uid://cw746d5wc87tw" path="res://scripts/ui/main_menu.gd" id="1_sd5it"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sd5it"]
+
+[node name="MainMenu" type="Control" unique_id=438544485]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sd5it")
+
+[node name="Background" type="ColorRect" parent="." unique_id=2125981222]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.035, 0.055, 0.08, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=873484810]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1019153003]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1912039662]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "FRAGMENTA ANIMAE"
+label_settings = SubResource("LabelSettings_sd5it")
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=916498222]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "Play"
+
+[node name="DeckButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=916498223]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "EDITAR DECK"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2077356904]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+disabled = true
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1054414408]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "Exit"

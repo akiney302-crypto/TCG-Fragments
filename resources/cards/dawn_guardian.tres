@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dpujcw2i023jx"]
+
+[ext_resource type="Script" uid="uid://cr3va8riy8e0b" path="res://scripts/data/card_data.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ei6gl6uwbnvm" path="res://art/cards/artworks/test_unit.jpg" id="2_art"]
+
+[resource]
+script = ExtResource("1_script")
+card_id = "UNIT_010"
+card_name = "Guardian del Alba"
+description = "Una unidad defensiva de coste medio-alto."
+cost = 4
+attack = 4
+life = 6
+artwork = ExtResource("2_art")

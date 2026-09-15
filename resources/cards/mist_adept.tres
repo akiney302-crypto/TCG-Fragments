@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/card_data.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://art/cards/artworks/test_spell.jpg" id="2_art"]
+
+[resource]
+script = ExtResource("1_script")
+card_id = "UNIT_013"
+card_name = "Adepta de la Bruma"
+description = "Una unidad flexible para rellenar la curva de energia."
+card_type = "TROOP"
+cost = 2
+attack = 2
+life = 3
+artwork = ExtResource("2_art")
