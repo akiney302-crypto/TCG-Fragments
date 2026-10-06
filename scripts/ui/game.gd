@@ -6,21 +6,22 @@ const CARD_BACK_TEXTURE: Texture2D = preload("res://art/ui/card_back.svg")
 @onready var opponent_hp_label: Label = $MarginContainer/VBoxContainer/TopBar/HBoxContainer/PlayerInfo/PlayerHP
 @onready var opponent_energy_label: Label = $MarginContainer/VBoxContainer/TopBar/HBoxContainer/PlayerInfo/OpponentEnergy
 @onready var opponent_hand_label: Label = $MarginContainer/VBoxContainer/TopBar/HBoxContainer/EnemyInfo/OpponentHand
-@onready var player_hp_label: Label = $MarginContainer/VBoxContainer/PlayerResources/ResourcesRow/PlayerHealth
-@onready var player_energy_label: Label = $MarginContainer/VBoxContainer/PlayerResources/ResourcesRow/PlayerEnergyCurrent
+@onready var player_hp_label: Label = $MarginContainer/VBoxContainer/CenterArea/PlayerResources/ResourcesRow/PlayerHealth
+@onready var player_energy_label: Label = $MarginContainer/VBoxContainer/CenterArea/PlayerResources/ResourcesRow/PlayerEnergyCurrent
 @onready var turn_label: Label = $MarginContainer/VBoxContainer/TopBar/HBoxContainer/TurnInfo/TurnLabel
 @onready var phase_label: Label = $MarginContainer/VBoxContainer/TopBar/HBoxContainer/PhaseInfo/PhaseLabel
 @onready var hand_container: HBoxContainer = $MarginContainer/VBoxContainer/CenterArea/HandPanel/HandScroll/HandContainer
-@onready var field_container: HBoxContainer = $MarginContainer/VBoxContainer/CenterArea/FieldPanel/FieldContainer
-@onready var enemy_field_container: HBoxContainer = $MarginContainer/VBoxContainer/CenterArea/EnemyFieldPanel/EnemyFieldContainer
+@onready var field_container: HBoxContainer = $MarginContainer/VBoxContainer/CenterArea/PlayerBoardRow/FieldPanel/FieldContainer
+@onready var enemy_field_container: HBoxContainer = $MarginContainer/VBoxContainer/CenterArea/OpponentBoardRow/EnemyFieldPanel/EnemyFieldContainer
 @onready var play_button: Button = $MarginContainer/VBoxContainer/BottomBar/ActionButtons/PlayButton
 @onready var discard_button: Button = $MarginContainer/VBoxContainer/BottomBar/ActionButtons/DiscardButton
 @onready var attack_button: Button = $MarginContainer/VBoxContainer/BottomBar/ActionButtons/AttackButton
 @onready var advance_button: Button = $MarginContainer/VBoxContainer/BottomBar/ActionButtons/EndTurnButton
 @onready var finish_turn_button: Button = $MarginContainer/VBoxContainer/BottomBar/ActionButtons/FinishTurnButton
 @onready var pause_button: Button = $MarginContainer/VBoxContainer/BottomBar/ActionButtons/PauseButton
-@onready var deck_count_label: Label = $MarginContainer/VBoxContainer/BottomBar/ActionButtons/DeckCount
-@onready var graveyard_count_label: Label = $MarginContainer/VBoxContainer/BottomBar/ActionButtons/GraveyardCount
+@onready var deck_count_label: Label = $MarginContainer/VBoxContainer/CenterArea/PlayerBoardRow/PlayerDeckPanel/PlayerDeckContent/DeckCount
+@onready var opponent_deck_count_label: Label = $MarginContainer/VBoxContainer/CenterArea/OpponentBoardRow/OpponentDeckPanel/OpponentDeckContent/OpponentDeckCount
+@onready var graveyard_count_label: Label = $MarginContainer/VBoxContainer/CenterArea/PlayerBoardRow/PlayerDeckPanel/PlayerDeckContent/GraveyardCount
 @onready var log_label: RichTextLabel = $MarginContainer/VBoxContainer/LogPanel/LogLabel
 @onready var animation_layer: Control = $AnimationLayer
 @onready var coin_flip_overlay: ColorRect = $CoinFlipOverlay
@@ -129,13 +130,15 @@ func _refresh_ui() -> void:
 	opponent_hp_label.text = "RIVAL  |  VIDA %d/%d" % [game_manager.enemy.hp, game_manager.enemy.max_hp]
 	opponent_energy_label.text = "ENERGIA %d/%d" % [game_manager.enemy.energy, game_manager.enemy.max_energy]
 	opponent_hand_label.text = "MANO %d" % game_manager.enemy.hand.size()
+	opponent_deck_count_label.text = "MAZO %d" % game_manager.enemy.deck.size()
 	player_hp_label.text = "VIDA  %d/%d" % [game_manager.player.hp, game_manager.player.max_hp]
 	player_energy_label.text = "ENERGIA  %d/%d" % [game_manager.player.energy, game_manager.player.max_energy]
 	turn_label.text = "TURNO %d" % game_manager.turn_manager.current_turn
 	phase_label.text = _get_phase_label(game_manager.turn_manager.phase)
 	deck_count_label.text = "MAZO  %d" % game_manager.player.deck.size()
 	graveyard_count_label.text = "DESCARTE  %d" % game_manager.player.graveyard.size()
-	log_label.text = "\n".join(game_manager.log_messages.slice(maxi(0, game_manager.log_messages.size() - 2)))
+	log_label.text = "\n".join(game_manager.log_messages.slice(maxi(0, game_manager.log_messages.size() - 4)))
+	log_label.scroll_to_line(maxi(0, log_label.get_line_count() - 1))
 	_populate_hand()
 	_populate_fields()
 	_update_action_buttons()
@@ -314,7 +317,7 @@ func _animate_next_card() -> void:
 	fly_card.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	if fly_card.get_parent() == null:
 		animation_layer.add_child(fly_card)
-	var card_size: Vector2 = Vector2(126, 172)
+	var card_size: Vector2 = Vector2(116, 154)
 	fly_card.custom_minimum_size = card_size
 	fly_card.size = card_size
 	var source_position: Vector2 = _zone_center(from_zone, source_owner)
@@ -341,7 +344,7 @@ func _zone_center(zone: String, owner: String) -> Vector2:
 	var offset: Vector2 = Vector2.ZERO
 	match zone:
 		"DECK":
-			target = deck_count_label
+			target = opponent_deck_count_label if owner == "enemy" else deck_count_label
 		"GRAVEYARD":
 			target = graveyard_count_label
 		"FIELD":

@@ -1,111 +1,110 @@
-[gd_resource type="Theme" load_steps=6 format=3]
-
-[sub_resource type="StyleBoxFlat" id="GlassPanel"]
-bg_color = Color(0.067, 0.094, 0.153, 0.96)
-border_color = Color(0.263, 0.471, 0.906, 0.68)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-content_margin_left = 12.0
-content_margin_top = 10.0
-content_margin_right = 12.0
-content_margin_bottom = 10.0
-shadow_color = Color(0.0, 0.0, 0.0, 0.3)
-shadow_size = 5
+[gd_resource type="Theme" format=3 uid="uid://ydc0jql34k7g"]
 
 [sub_resource type="StyleBoxFlat" id="ButtonNormal"]
-bg_color = Color(0.094, 0.129, 0.196, 0.98)
-border_color = Color(0.298, 0.471, 0.906, 0.84)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 content_margin_left = 14.0
 content_margin_top = 9.0
 content_margin_right = 14.0
 content_margin_bottom = 9.0
+bg_color = Color(0.094, 0.129, 0.196, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.298, 0.471, 0.906, 0.84)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="ButtonHover"]
-bg_color = Color(0.133, 0.196, 0.294, 1.0)
-border_color = Color(0.263, 0.78, 0.851, 1.0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 content_margin_left = 14.0
 content_margin_top = 9.0
 content_margin_right = 14.0
 content_margin_bottom = 9.0
+bg_color = Color(0.133, 0.196, 0.294, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.263, 0.78, 0.851, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="ButtonPressed"]
-bg_color = Color(0.059, 0.086, 0.145, 1.0)
-border_color = Color(0.337, 0.71, 0.537, 1.0)
+content_margin_left = 14.0
+content_margin_top = 9.0
+content_margin_right = 14.0
+content_margin_bottom = 9.0
+bg_color = Color(0.059, 0.086, 0.145, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
+border_color = Color(0.337, 0.71, 0.537, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-content_margin_left = 14.0
-content_margin_top = 9.0
-content_margin_right = 14.0
-content_margin_bottom = 9.0
 
-[sub_resource type="StyleBoxFlat" id="InputField"]
-bg_color = Color(0.043, 0.059, 0.102, 1.0)
-border_color = Color(0.298, 0.471, 0.906, 0.85)
+[sub_resource type="StyleBoxFlat" id="GlassPanel"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+bg_color = Color(0.067, 0.094, 0.153, 0.96)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+border_color = Color(0.263, 0.471, 0.906, 0.68)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="InputField"]
 content_margin_left = 10.0
 content_margin_top = 7.0
 content_margin_right = 10.0
 content_margin_bottom = 7.0
+bg_color = Color(0.043, 0.059, 0.102, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.298, 0.471, 0.906, 0.85)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [resource]
 default_font_size = 16
-default_color = Color(0.82, 0.9, 0.88, 1.0)
-Button/colors/font_color = Color(0.82, 0.92, 0.89, 1.0)
-Button/colors/font_hover_color = Color(0.97, 1.0, 0.95, 1.0)
-Button/colors/font_pressed_color = Color(0.74, 0.94, 0.88, 1.0)
-Button/colors/font_disabled_color = Color(0.38, 0.47, 0.46, 1.0)
-Button/styles/normal = SubResource("ButtonNormal")
-Button/styles/hover = SubResource("ButtonHover")
-Button/styles/pressed = SubResource("ButtonPressed")
+Button/colors/font_color = Color(0.82, 0.92, 0.89, 1)
+Button/colors/font_disabled_color = Color(0.38, 0.47, 0.46, 1)
+Button/colors/font_hover_color = Color(0.97, 1, 0.95, 1)
+Button/colors/font_pressed_color = Color(0.74, 0.94, 0.88, 1)
 Button/styles/disabled = SubResource("ButtonNormal")
-OptionButton/styles/normal = SubResource("ButtonNormal")
+Button/styles/hover = SubResource("ButtonHover")
+Button/styles/normal = SubResource("ButtonNormal")
+Button/styles/pressed = SubResource("ButtonPressed")
+ItemList/colors/font_color = Color(0.78, 0.87, 0.85, 1)
+ItemList/colors/font_selected_color = Color(0.98, 0.99, 0.91, 1)
+ItemList/colors/guide_color = Color(0.23, 0.4, 0.39, 0.45)
+ItemList/colors/selected_color = Color(0.17, 0.35, 0.32, 0.9)
+ItemList/styles/panel = SubResource("GlassPanel")
+Label/colors/font_color = Color(0.945, 0.984, 1, 1)
+LineEdit/colors/caret_color = Color(0.263, 0.78, 0.851, 1)
+LineEdit/colors/font_color = Color(0.88, 0.94, 0.91, 1)
+LineEdit/styles/focus = SubResource("ButtonHover")
+LineEdit/styles/normal = SubResource("InputField")
 OptionButton/styles/hover = SubResource("ButtonHover")
+OptionButton/styles/normal = SubResource("ButtonNormal")
 OptionButton/styles/pressed = SubResource("ButtonPressed")
 Panel/styles/panel = SubResource("GlassPanel")
 PanelContainer/styles/panel = SubResource("GlassPanel")
-ItemList/styles/panel = SubResource("GlassPanel")
-ItemList/colors/font_color = Color(0.78, 0.87, 0.85, 1.0)
-ItemList/colors/font_selected_color = Color(0.98, 0.99, 0.91, 1.0)
-ItemList/colors/guide_color = Color(0.23, 0.4, 0.39, 0.45)
-ItemList/colors/selected_color = Color(0.17, 0.35, 0.32, 0.9)
-LineEdit/styles/normal = SubResource("InputField")
-LineEdit/styles/focus = SubResource("ButtonHover")
-LineEdit/colors/font_color = Color(0.88, 0.94, 0.91, 1.0)
-LineEdit/colors/caret_color = Color(0.263, 0.78, 0.851, 1.0)
-Label/colors/font_color = Color(0.945, 0.984, 1.0, 1.0)
-RichTextLabel/colors/default_color = Color(0.78, 0.85, 0.93, 1.0)
+RichTextLabel/colors/default_color = Color(0.78, 0.85, 0.93, 1)

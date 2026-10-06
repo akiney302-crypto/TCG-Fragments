@@ -25,9 +25,9 @@ func set_compact(compact: bool = true) -> void:
 	if not compact:
 		custom_minimum_size = Vector2(160, 224)
 		return
-	custom_minimum_size = Vector2(126, 172)
+	custom_minimum_size = Vector2(116, 154)
 	var art_region: Control = artwork.get_parent()
-	art_region.custom_minimum_size.y = 54
+	art_region.custom_minimum_size.y = 48
 	type_icon.custom_minimum_size = Vector2(14, 14)
 	card_name.add_theme_font_size_override("font_size", 10)
 	card_type.add_theme_font_size_override("font_size", 8)

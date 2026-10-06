@@ -6,7 +6,7 @@ var is_ai: bool = false
 var hp: int = GameRules.STARTING_HP
 var max_hp: int = GameRules.MAX_HP
 var energy: int = GameRules.STARTING_ENERGY
-var max_energy: int = GameRules.MAX_ENERGY
+var max_energy: int = GameRules.STARTING_ENERGY
 var hand: Array[CardInstance] = []
 var field: Array[CardInstance] = []
 var deck: Array[CardInstance] = []
@@ -24,7 +24,7 @@ func reset_stats() -> void:
     hp = GameRules.STARTING_HP
     max_hp = GameRules.MAX_HP
     energy = GameRules.STARTING_ENERGY
-    max_energy = GameRules.MAX_ENERGY
+    max_energy = GameRules.STARTING_ENERGY
     hand.clear()
     field.clear()
     deck.clear()
@@ -45,7 +45,8 @@ func draw_cards(amount: int) -> Array[CardInstance]:
     return drawn
 
 func gain_energy(amount: int = 1) -> void:
-    energy = clamp(energy + amount, 0, max_energy)
+    max_energy = mini(max_energy + maxi(0, amount), GameRules.MAX_ENERGY)
+    energy = max_energy
 
 func add_card_to_zone(card: CardInstance, zone_name: String) -> void:
     card.set_zone(zone_name)

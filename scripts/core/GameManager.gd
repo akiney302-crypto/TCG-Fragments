@@ -74,9 +74,14 @@ func _begin_turn(state: PlayerState) -> void:
     if state == null:
         return
     state.reset_turn_state()
-    state.gain_energy(GameRules.TURN_START_ENERGY_GAIN)
+    if turn_manager.current_turn > 1:
+        state.gain_energy(GameRules.TURN_START_ENERGY_GAIN)
+    else:
+        state.energy = state.max_energy
     _draw_cards_for(state, GameRules.TURN_START_DRAW_COUNT)
     turn_manager.begin_turn()
+    emit_signal("turn_started", turn_manager.current_turn, turn_manager.phase)
+    turn_manager.advance_phase()
     emit_signal("turn_started", turn_manager.current_turn, turn_manager.phase)
 
 func _draw_cards_for(state: PlayerState, amount: int) -> int:
@@ -274,7 +279,10 @@ func _attack_for(state: PlayerState, opponent: PlayerState, attacker: CardInstan
     var result: Dictionary = combat_manager.resolve_attack(attacker, target, states)
     emit_signal("battle_resolved", result)
     if result.get("ok", false):
-        log_messages.append("%s attacked for %d damage." % [attacker.get_name(), attacker.get_attack()])
+        if target is CardInstance:
+            log_messages.append("%s hit %s for %d damage (%d HP remaining)." % [attacker.get_name(), target.get_name(), attacker.get_attack(), target.get_hp()])
+        elif target is PlayerState:
+            log_messages.append("%s hit %s for %d damage (%d HP remaining)." % [attacker.get_name(), target.name_label, attacker.get_attack(), target.hp])
         emit_signal("sound_requested", "damage")
         if result.has("destroyed"):
             var destroyed: CardInstance = result["destroyed"]

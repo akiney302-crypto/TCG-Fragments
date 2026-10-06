@@ -2,6 +2,16 @@
 
 Este documento registra las etapas implementadas en el prototipo, el motivo de cada una y su resultado verificable. Las entradas nuevas van arriba. En cada cambio futuro del proyecto se agregara una entrada con fecha, archivos/areas tocadas, razon de diseno, resultado y validacion. Tambien se revisara `CARD_ARCHETYPES_DECKS.md`; si cambia cualquier carta, arquetipo, regla de sinergia o mazo, se actualizara su inventario en ese mismo cambio.
 
+## 2026-10-06 - Mesa lateral y flujo de robo
+
+1. Se separaron las filas del rival y jugador: mazo rival a la izquierda de su campo; mazo propio, descarte y conteo a la derecha del campo propio. La mano y los recursos siguen anclados al lado del jugador.
+2. Se aumento el registro a 70 px y muestra cuatro eventos recientes. El combate ahora incluye atacante, objetivo, dano y HP restante para que los mensajes de daño sean visibles y utiles.
+3. Se ajustaron cartas compactas y alturas de zonas para mantener arte y lectura de campos/mano dentro del viewport 1280x720.
+4. La energia funciona como reserva TCG: empieza en 1, aumenta su capacidad en 1 al inicio de cada turno hasta 10 y rellena la energia gastada. Al robar y refrescar recursos, GameManager pasa automaticamente de DRAW a PLACEMENT_1.
+5. La organizacion toma como referencia funcional la lectura de campo y zonas de The Lost Glitches, Yu-Gi-Oh! y Hearthstone; se conserva el lenguaje visual Soulglass, el arte original y sus colores propios, sin replicar assets ni composiciones de esos juegos.
+
+Validacion: analisis estatico focalizado sin errores. La prueba de humo comprueba robo automatico, fase de colocacion inicial y energia del jugador entrante; runtime visual pendiente porque Godot no esta disponible.
+
 ## 2026-10-06 - Reparacion de parser y consistencia de reglas
 
 ### Causa del parser error

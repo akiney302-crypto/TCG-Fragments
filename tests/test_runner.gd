@@ -86,7 +86,7 @@ func _init() -> void:
     if not _assert_test(manager.player.hand.size() == expected_start_hand, "Opening hand plus turn draw mismatch."):
         quit()
         return
-    if not _assert_test(manager.turn_manager.phase == "DRAW" and manager.player.energy == 2, "A turn must begin in DRAW with one energy gain."):
+    if not _assert_test(manager.turn_manager.phase == "PLACEMENT_1" and manager.player.energy == GameRules.STARTING_ENERGY, "The opening draw should automatically advance to placement with starting energy."):
         quit()
         return
 
@@ -94,18 +94,17 @@ func _init() -> void:
     test_card.set_zone("HAND")
     manager.player.hand.append(test_card)
     manager.player.energy = manager.player.max_energy
-    if not _assert_test(not manager.play_card_from_hand(test_card)["ok"], "Playing cards must be blocked during DRAW."):
+    if not _assert_test(manager.play_card_from_hand(test_card)["ok"], "The automatic draw should leave the player ready to place cards."):
         quit()
         return
 
     manager.advance_game_phase()
-    if not _assert_test(manager.turn_manager.phase == "PLACEMENT_1" and manager.play_card_from_hand(test_card)["ok"], "PLACEMENT_1 should allow playing cards."):
+    if not _assert_test(manager.turn_manager.phase == "ATTACK", "PLACEMENT_1 should advance to ATTACK."):
         quit()
         return
-    if not _assert_test(not manager.attack(test_card, manager.enemy)["ok"], "Attacks must be blocked outside ATTACK."):
+    if not _assert_test(not manager.attack(test_card, manager.enemy)["ok"], "A unit summoned this turn must not attack during ATTACK."):
         quit()
         return
-
     var enemy_target := CardInstance.new(catalog.get_card_by_id("knight_squire"), "enemy")
     enemy_target.set_zone("FIELD")
     manager.enemy.field.append(enemy_target)
@@ -113,7 +112,6 @@ func _init() -> void:
     eligible_attacker.set_zone("FIELD")
     eligible_attacker.summoned_this_turn = false
     manager.player.field.append(eligible_attacker)
-    manager.advance_game_phase()
     if not _assert_test(manager.turn_manager.phase == "ATTACK" and test_card.summoned_this_turn and not manager.attack(test_card, manager.enemy)["ok"], "A unit summoned this turn must not attack."):
         quit()
         return
@@ -160,8 +158,8 @@ func _init() -> void:
         quit()
         return
 
-    if manager.enemy.hand.size() != GameRules.OPENING_HAND_SIZE + GameRules.TURN_START_DRAW_COUNT:
-        push_error("The incoming active player should draw at turn start.")
+    if manager.enemy.hand.size() != GameRules.OPENING_HAND_SIZE + GameRules.TURN_START_DRAW_COUNT or manager.enemy.energy != 2:
+        push_error("The incoming active player should draw and refill energy at turn start.")
         quit()
         return
 

@@ -14,8 +14,10 @@ Fragmenta Animae is a Godot 4.x TCG prototype built around a clean data/state/ru
 
 - 20-card deck, 5-card opening hand plus the active player's turn-start draw
 - 20 HP, energy up to 10
+- energy capacity starts at 1, grows by 1 per turn, and refills at turn start
 - max 5 units on field
 - turn phases: DRAW, PLACEMENT_1, ATTACK, PLACEMENT_2, END_TURN
+- DRAW resolves automatically into PLACEMENT_1
 - summoned units cannot attack until their next turn unless tagged HASTE
 - one Champion per deck; hand limit applies to normal and effect draws
 - card types: TROOP, CHAMPION, TRUTH, SECRETS

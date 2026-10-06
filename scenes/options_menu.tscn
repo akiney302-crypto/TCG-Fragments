@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://c5j71n8blx78h"]
 
-[ext_resource type="Script" path="res://scripts/ui/options_menu.gd" id="1_gh8nq"]
-[ext_resource type="Theme" path="res://art/ui/fragmenta_theme.tres" id="2_theme"]
-[ext_resource type="Texture2D" path="res://art/ui/soulglass_backdrop.svg" id="3_backdrop"]
+[ext_resource type="Script" uid="uid://dyasxrrhauoda" path="res://scripts/ui/options_menu.gd" id="1_gh8nq"]
+[ext_resource type="Theme" uid="uid://ydc0jql34k7g" path="res://art/ui/fragmenta_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" uid="uid://q5rgqcinibv4" path="res://art/ui/soulglass_backdrop.svg" id="3_backdrop"]
 
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" type="Control" unique_id=1134408160]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_gh8nq")
 theme = ExtResource("2_theme")
+script = ExtResource("1_gh8nq")
 
-[node name="Backdrop" type="TextureRect" parent="."]
+[node name="Backdrop" type="TextureRect" parent="." unique_id=949856722]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +26,7 @@ texture = ExtResource("3_backdrop")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1483155713]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,26 +34,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=195196916]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1813558966]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Opciones"
 
-[node name="ResolutionButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="ResolutionButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1124521260]
 custom_minimum_size = Vector2(280, 48)
 layout_mode = 2
 text = "1280x720"
 
-[node name="AudioButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="AudioButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1118421406]
 custom_minimum_size = Vector2(280, 48)
 layout_mode = 2
 text = "Audio"
 
-[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=717395853]
 custom_minimum_size = Vector2(280, 48)
 layout_mode = 2
 text = "Volver"
