@@ -101,6 +101,9 @@ func _create_field_row(card: CardInstance) -> HBoxContainer:
 
 func _on_card_selected(card: CardInstance) -> void:
 	selected_card = card
+	for child in hand_container.get_children():
+		if child is CardView:
+			child.set_selected(child.card_instance == card)
 
 func _on_play_pressed() -> void:
 	if selected_card == null:

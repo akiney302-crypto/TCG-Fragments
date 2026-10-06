@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="360" height="500" viewBox="0 0 360 500">
-  <path d="M28 4h304l24 24v444l-24 24H28L4 472V28z" fill="#211c13" fill-opacity=".25" stroke="#e7bd68" stroke-width="6"/>
+  <path d="M28 4h304l24 24v444l-24 24H28L4 472V28z" fill="#211c13" fill-opacity=".25" stroke="#e6b95a" stroke-width="6"/>
   <path d="M31 16h298l15 15v60H16V31z" fill="#806333" fill-opacity=".34"/>
   <path d="M16 93h328M18 430h324M34 16v26m292-26v26M16 466h28m252 0h28" fill="none" stroke="#f8dfa0" stroke-opacity=".82" stroke-width="2"/>
-  <path d="m16 102 24-9-24-9m328 18-24-9 24-9M16 414l24 16-24 16m328-32-24 16 24 16" fill="none" stroke="#e7bd68" stroke-width="3"/>
-  <path d="m40 12 24 24-24 24-24-24zm280 0 24 24-24 24-24-24zM40 440l24 24-24 24-24-24zm280 0 24 24-24 24-24-24z" fill="#e7bd68" fill-opacity=".9"/>
+  <path d="m16 102 24-9-24-9m328 18-24-9 24-9M16 414l24 16-24 16m328-32-24 16 24 16" fill="none" stroke="#e6b95a" stroke-width="3"/>
+  <path d="m40 12 24 24-24 24-24-24zm280 0 24 24-24 24-24-24zM40 440l24 24-24 24-24-24zm280 0 24 24-24 24-24-24z" fill="#e6b95a" fill-opacity=".9"/>
   <path d="M58 484 78 464m224 20-20-20" stroke="#fff0c2" stroke-opacity=".82" stroke-width="2"/>
 </svg>

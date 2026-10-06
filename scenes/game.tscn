@@ -46,7 +46,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TopBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,31 +54,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayerInfo" type="VBoxContainer" parent="TopBar/HBoxContainer"]
+[node name="PlayerInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer"]
 layout_mode = 2
 
-[node name="PlayerHP" type="Label" parent="TopBar/HBoxContainer/PlayerInfo"]
-layout_mode = 2
-text = "HP: 20/20"
-
-[node name="EnemyInfo" type="VBoxContainer" parent="TopBar/HBoxContainer"]
-layout_mode = 2
-
-[node name="EnemyHP" type="Label" parent="TopBar/HBoxContainer/EnemyInfo"]
+[node name="PlayerHP" type="Label" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer/PlayerInfo"]
 layout_mode = 2
 text = "HP: 20/20"
 
-[node name="TurnInfo" type="VBoxContainer" parent="TopBar/HBoxContainer"]
+[node name="EnemyInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer"]
 layout_mode = 2
 
-[node name="TurnLabel" type="Label" parent="TopBar/HBoxContainer/TurnInfo"]
+[node name="EnemyHP" type="Label" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer/EnemyInfo"]
+layout_mode = 2
+text = "HP: 20/20"
+
+[node name="TurnInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer"]
+layout_mode = 2
+
+[node name="TurnLabel" type="Label" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer/TurnInfo"]
 layout_mode = 2
 text = "Turn: 1"
 
-[node name="PhaseInfo" type="VBoxContainer" parent="TopBar/HBoxContainer"]
+[node name="PhaseInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer"]
 layout_mode = 2
 
-[node name="PhaseLabel" type="Label" parent="TopBar/HBoxContainer/PhaseInfo"]
+[node name="PhaseLabel" type="Label" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer/PhaseInfo"]
 layout_mode = 2
 text = "Phase: START"
 
@@ -86,11 +86,11 @@ text = "Phase: START"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="EnemyFieldPanel" type="Panel" parent="CenterArea"]
+[node name="EnemyFieldPanel" type="Panel" parent="MarginContainer/VBoxContainer/CenterArea"]
 custom_minimum_size = Vector2(0, 104)
 layout_mode = 2
 
-[node name="EnemyFieldContainer" type="VBoxContainer" parent="EnemyFieldPanel"]
+[node name="EnemyFieldContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterArea/EnemyFieldPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,11 +98,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FieldPanel" type="Panel" parent="CenterArea"]
+[node name="FieldPanel" type="Panel" parent="MarginContainer/VBoxContainer/CenterArea"]
 custom_minimum_size = Vector2(0, 104)
 layout_mode = 2
 
-[node name="FieldContainer" type="VBoxContainer" parent="FieldPanel"]
+[node name="FieldContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterArea/FieldPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,11 +110,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HandPanel" type="Panel" parent="CenterArea"]
+[node name="HandPanel" type="Panel" parent="MarginContainer/VBoxContainer/CenterArea"]
 custom_minimum_size = Vector2(0, 198)
 layout_mode = 2
 
-[node name="HandScroll" type="ScrollContainer" parent="CenterArea/HandPanel"]
+[node name="HandScroll" type="ScrollContainer" parent="MarginContainer/VBoxContainer/CenterArea/HandPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -124,7 +124,7 @@ grow_vertical = 2
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
 
-[node name="HandContainer" type="HBoxContainer" parent="CenterArea/HandPanel/HandScroll"]
+[node name="HandContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterArea/HandPanel/HandScroll"]
 layout_mode = 1
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
@@ -133,7 +133,7 @@ theme_override_constants/separation = 8
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="LogLabel" type="RichTextLabel" parent="LogPanel"]
+[node name="LogLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/LogPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -147,7 +147,7 @@ text = "Game log"
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[node name="ActionButtons" type="HBoxContainer" parent="BottomBar"]
+[node name="ActionButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -155,19 +155,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayButton" type="Button" parent="BottomBar/ActionButtons"]
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
 layout_mode = 2
 text = "Play"
 
-[node name="DiscardButton" type="Button" parent="BottomBar/ActionButtons"]
+[node name="DiscardButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
 layout_mode = 2
 text = "Discard"
 
-[node name="AttackButton" type="Button" parent="BottomBar/ActionButtons"]
+[node name="AttackButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
 layout_mode = 2
 text = "Attack"
 
-[node name="EndTurnButton" type="Button" parent="BottomBar/ActionButtons"]
+[node name="EndTurnButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
 layout_mode = 2
 text = "End Turn"
 

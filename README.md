@@ -50,4 +50,4 @@ This workspace does not currently include a Godot runtime, so the project can be
 - `resources/decks/starter_decks.json` contains Knight, Dragon, Pirate, and Mech starter lists. The deck editor loads presets or saved decks and saves the chosen deck as active for the next match.
 - Every deck must contain one Champion. The Dragon, Pirate, and Mech families each have two extra optional Champions that the player can add from the catalog.
 - Every match begins with a heads-or-tails choice to decide which side takes the opening action.
-- `art/ui/` contains the shared Soulglass theme, faceted backgrounds, card frames, type sigils, and card back used across the interface (ten original SVG assets).
+- `art/ui/` contains the shared Soulglass theme, faceted backgrounds, card frames, type sigils, soul-core placeholder, and card back used across the interface (eleven original SVG assets).

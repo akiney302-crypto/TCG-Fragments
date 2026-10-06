@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" path="res://art/ui/card_back.svg" id="2_back"]
 
 [node name="CardBack" type="Panel"]
-custom_minimum_size = Vector2(180, 250)
+custom_minimum_size = Vector2(160, 224)
 layout_mode = 0
-offset_right = 180.0
-offset_bottom = 250.0
+offset_right = 160.0
+offset_bottom = 224.0
 theme = ExtResource("1_theme")
 
 [node name="BackArt" type="TextureRect" parent="."]

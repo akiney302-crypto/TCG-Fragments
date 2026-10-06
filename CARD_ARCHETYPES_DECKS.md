@@ -4,16 +4,16 @@ Inventario de diseno del catalogo y los mazos iniciales. C = coste; ATK = ataque
 
 ## Lenguaje visual
 
-La direccion Soulglass mezcla planos y aristas de cristal con trazos interiores translucidos. Los fondos usan facetas angulares y lineas de fractura; los marcos no dependen de una imagen de personaje, por lo que se pueden usar con ilustraciones futuras sin taparlas.
+La direccion Soulglass mezcla planos y aristas de cristal con trazos interiores translucidos. Los fondos usan facetas angulares y lineas de fractura; los marcos no dependen de una imagen de personaje, por lo que se pueden usar con ilustraciones futuras sin taparlas. `CardVisualTheme.gd` selecciona los recursos por tipo; no se crean escenas por carta.
 
 | Tipo | Acento | Sigilo |
 | --- | --- | --- |
-| TROOP | Jade `#66D8B5` | Faceta / escudo de tropa |
-| CHAMPION | Oro `#EDC66E` | Corona facetada |
-| TRUTH | Hielo `#82DBE4` | Ojo de cristal |
-| SECRETS | Coral `#E58B99` | Mascara fragmentada |
+| TROOP | Crystal Cyan `#43C7D9` | Faceta / escudo de tropa |
+| CHAMPION | Champion Gold `#E6B95A` | Corona facetada |
+| TRUTH | Truth Violet `#8E63D7` | Ojo de cristal |
+| SECRETS | Arcane Blue `#4C78E7` sobre World Dark | Mascara fragmentada |
 
-El recurso compartido está en `art/ui/fragmenta_theme.tres`; fondo, marcos, iconos y reverso viven en `art/ui/`. Menú, partida, constructor y opciones comparten fondo/tema. El constructor y la mano de juego usan la carta enmarcada; el catálogo y el campo usan sus sigilos por tipo.
+El recurso compartido esta en `art/ui/fragmenta_theme.tres`; fondo, marcos, iconos, placeholder del nucleo y reverso viven en `art/ui/`. Menu, partida, constructor y opciones comparten fondo/tema. El constructor y la mano de juego usan la carta enmarcada; el catalogo y el campo usan sus sigilos por tipo. CardView mide 160x224 en preview y reduce de forma uniforme en la mano.
 
 ## Modelo de carta
 

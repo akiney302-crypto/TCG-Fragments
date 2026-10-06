@@ -2,6 +2,25 @@
 
 Este documento registra las etapas implementadas en el prototipo, el motivo de cada una y su resultado verificable. Las entradas nuevas van arriba. En cada cambio futuro del proyecto se agregara una entrada con fecha, archivos/areas tocadas, razon de diseno, resultado y validacion. Tambien se revisara `CARD_ARCHETYPES_DECKS.md`; si cambia cualquier carta, arquetipo, regla de sinergia o mazo, se actualizara su inventario en ese mismo cambio.
 
+## 2026-10-06 - Biblia visual y reparacion de escenas
+
+### Integracion de la Biblia
+1. Se tomo la Biblia visual adjunta como guia semantica sin descartar Soulglass: se conservaron paneles oscuros y facetas, cambiando los acentos a TROOP cyan, CHAMPION oro, TRUTH violeta y SECRETS azul-violeta oscuro.
+2. Se centralizo el mapeo tipo -> color/marco/sigilo/tier en `CardVisualTheme.gd`.
+3. Se ajusto el CardView compartido a 160x224 con arte superior, coste en esquina, nombre, tipo, reglas, familia y ataque/HP abajo. `art_path` admite ilustracion final y el SVG del nucleo funciona como placeholder neutro.
+4. La carta seleccionada recibe elevacion/pulso local; el feedback no toca el estado de juego.
+
+### Reparacion del error al iniciar
+1. Se revisaron las rutas `parent=` en todas las escenas. `game.tscn` y `deck_builder.tscn` tenian numerosos padres parciales como `TopBar`, `BottomBar`, `LeftPanel` y `RightPanel` que no correspondian a rutas desde la raiz de la escena.
+2. Se corrigieron las rutas completas. Los nodos de boton y controles ahora pertenecen al arbol donde los scripts esperan encontrarlos; esto resolvia referencias `@onready` nulas que producian errores al acceder a `.pressed`.
+3. Se verificaron todos los padres declarados y los `@onready` de scripts enlazados a escenas; no quedaron rutas pendientes.
+
+### Validacion
+- Analisis estatico global: sin errores.
+- Verificador de escenas: padres completos y todas las rutas `@onready` resueltas.
+- SVG: parseo XML valido para los once recursos.
+- No hay ejecutable Godot en PATH; no se pudo realizar import ni ejecucion del proyecto con el motor 4.7.
+
 ## 2026-10-06 - Direccion visual Soulglass
 
 ### Cambios realizados
@@ -14,11 +33,11 @@ Este documento registra las etapas implementadas en el prototipo, el motivo de c
 7. Se centralizaron colores, paneles y controles en el Theme para que las vistas compartan materiales y estados coherentes.
 
 ### Motivo y resultado
-La materia principal se representa con poligonos, planos y aristas; la cualidad eterea aparece en sus lineas translucidas y tonos internos. Los colores de tipo son jade para tropas, oro para Champions, hielo para Truth y coral para Secrets. La identidad familiar queda como metadato, no compite con el color de tipo.
+La materia principal se representa con poligonos, planos y aristas; la cualidad eterea aparece en sus lineas translucidas y tonos internos. Los colores siguen la Biblia visual: cyan para tropas, oro para Champions, violeta para Truth y azul-violeta oscuro para Secrets. La identidad familiar queda como metadato, no compite con el color de tipo.
 
 ### Validacion
 - El editor no reporta errores en las escenas y scripts visuales revisados.
-- El recurso Theme se carga sin errores y los nueve SVG creados se pudieron parsear como XML.
+- El recurso Theme se carga sin errores; la integracion actual suma once SVG originales parseables como XML.
 - No se pudieron revisar capturas en runtime: Godot no esta disponible en el entorno.
 
 ## 2026-10-06 - Seleccion de mazo e iniciativa

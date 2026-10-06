@@ -47,12 +47,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 custom_minimum_size = Vector2(280, 0)
 
-[node name="CatalogLabel" type="Label" parent="LeftPanel"]
+[node name="CatalogLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Catalog"
 
-[node name="CatalogList" type="ItemList" parent="LeftPanel"]
+[node name="CatalogList" type="ItemList" parent="MarginContainer/HBoxContainer/LeftPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -61,18 +61,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 custom_minimum_size = Vector2(280, 0)
 
-[node name="DeckLabel" type="Label" parent="CenterPanel"]
+[node name="DeckLabel" type="Label" parent="MarginContainer/HBoxContainer/CenterPanel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Current deck"
 
-[node name="DeckCountLabel" type="Label" parent="CenterPanel"]
+[node name="DeckCountLabel" type="Label" parent="MarginContainer/HBoxContainer/CenterPanel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.56, 0.78, 0.72, 1)
 text = "Cards: 0 / 20"
 
-[node name="DeckList" type="ItemList" parent="CenterPanel"]
+[node name="DeckList" type="ItemList" parent="MarginContainer/HBoxContainer/CenterPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -92,18 +92,18 @@ layout_mode = 2
 layout_mode = 2
 placeholder_text = "Deck name"
 
-[node name="Inspector" type="VBoxContainer" parent="RightPanel"]
+[node name="Inspector" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SaveButton" type="Button" parent="RightPanel"]
+[node name="SaveButton" type="Button" parent="MarginContainer/HBoxContainer/RightPanel"]
 layout_mode = 2
 text = "Save and use"
 
-[node name="ResetButton" type="Button" parent="RightPanel"]
+[node name="ResetButton" type="Button" parent="MarginContainer/HBoxContainer/RightPanel"]
 layout_mode = 2
 text = "New deck"
 
-[node name="BackButton" type="Button" parent="RightPanel"]
+[node name="BackButton" type="Button" parent="MarginContainer/HBoxContainer/RightPanel"]
 layout_mode = 2
 text = "Back"
