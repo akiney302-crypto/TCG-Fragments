@@ -1,0 +1,72 @@
+{
+  "decks": [
+    {
+      "id": "dragon_brood",
+      "name": "Dragon Brood",
+      "archetype": "DRAGON",
+      "champion_id": "dragon_primarch",
+      "description": "A midrange flying-and-fire formation that builds a brood before deploying its Champion.",
+      "card_quantities": {
+        "dragon_primarch": 1,
+        "dragon_hatchling": 3,
+        "dragon_scaleguard": 3,
+        "dragon_skyhunter": 3,
+        "dragon_embermaw": 3,
+        "dragon_ancient_drake": 3,
+        "dragon_broodcaller": 3,
+        "dragon_hoardwarden": 1
+      }
+    },
+    {
+      "id": "pirate_freebooters",
+      "name": "Storm Freebooters",
+      "archetype": "PIRATE",
+      "champion_id": "pirate_admiral",
+      "description": "An aggressive crew that pressures early and uses its Admiral's draw to keep momentum.",
+      "card_quantities": {
+        "pirate_admiral": 1,
+        "pirate_cabin_runner": 3,
+        "pirate_corsair": 3,
+        "pirate_cannonhand": 3,
+        "pirate_reef_raider": 3,
+        "pirate_first_mate": 3,
+        "pirate_powder_gunner": 3,
+        "pirate_tidebreaker": 1
+      }
+    },
+    {
+      "id": "mech_foundry",
+      "name": "Foundry Colossi",
+      "archetype": "MECH",
+      "champion_id": "mech_overseer",
+      "description": "A durable machine line that builds a stable board before the Overseer restores its pilot.",
+      "card_quantities": {
+        "mech_overseer": 1,
+        "mech_scout_drone": 3,
+        "mech_alloy_sentinel": 3,
+        "mech_gearstriker": 3,
+        "mech_artificer": 3,
+        "mech_bastion_frame": 3,
+        "mech_rail_lancer": 3,
+        "mech_colossus": 1
+      }
+    },
+    {
+      "id": "knight_starter",
+      "name": "Knight Training Deck",
+      "archetype": "KNIGHT",
+      "champion_id": "knight_captain",
+      "description": "A straightforward deck of balanced units with no special synergy rules.",
+      "card_quantities": {
+        "knight_captain": 1,
+        "knight_squire": 3,
+        "knight_guard": 3,
+        "knight_archer": 3,
+        "knight_veteran": 3,
+        "knight_lancer": 3,
+        "knight_bulwark": 3,
+        "knight_page": 1
+      }
+    }
+  ]
+}

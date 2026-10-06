@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/deck_builder.gd" id="1_2s9k0"]
+[ext_resource type="Theme" path="res://art/ui/fragmenta_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://art/ui/soulglass_backdrop.svg" id="3_backdrop"]
+
+[node name="DeckBuilder" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2s9k0")
+theme = ExtResource("2_theme")
+
+[node name="Backdrop" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_backdrop")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LeftPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(280, 0)
+
+[node name="CatalogLabel" type="Label" parent="LeftPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Catalog"
+
+[node name="CatalogList" type="ItemList" parent="LeftPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(280, 0)
+
+[node name="DeckLabel" type="Label" parent="CenterPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Current deck"
+
+[node name="DeckCountLabel" type="Label" parent="CenterPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.56, 0.78, 0.72, 1)
+text = "Cards: 0 / 20"
+
+[node name="DeckList" type="ItemList" parent="CenterPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RightPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(280, 0)
+
+[node name="DeckSelectorLabel" type="Label" parent="MarginContainer/HBoxContainer/RightPanel"]
+layout_mode = 2
+text = "Load deck"
+
+[node name="DeckSelector" type="OptionButton" parent="MarginContainer/HBoxContainer/RightPanel"]
+layout_mode = 2
+
+[node name="DeckNameInput" type="LineEdit" parent="MarginContainer/HBoxContainer/RightPanel"]
+layout_mode = 2
+placeholder_text = "Deck name"
+
+[node name="Inspector" type="VBoxContainer" parent="RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SaveButton" type="Button" parent="RightPanel"]
+layout_mode = 2
+text = "Save and use"
+
+[node name="ResetButton" type="Button" parent="RightPanel"]
+layout_mode = 2
+text = "New deck"
+
+[node name="BackButton" type="Button" parent="RightPanel"]
+layout_mode = 2
+text = "Back"

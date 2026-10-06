@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Theme" path="res://art/ui/fragmenta_theme.tres" id="1_theme"]
+[ext_resource type="Texture2D" path="res://art/ui/card_back.svg" id="2_back"]
+
+[node name="CardBack" type="Panel"]
+custom_minimum_size = Vector2(180, 250)
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 250.0
+theme = ExtResource("1_theme")
+
+[node name="BackArt" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_back")
+expand_mode = 1
+stretch_mode = 6

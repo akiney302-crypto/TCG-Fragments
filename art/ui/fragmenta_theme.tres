@@ -1,0 +1,111 @@
+[gd_resource type="Theme" load_steps=6 format=3]
+
+[sub_resource type="StyleBoxFlat" id="GlassPanel"]
+bg_color = Color(0.055, 0.082, 0.09, 0.96)
+border_color = Color(0.24, 0.48, 0.48, 0.78)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+shadow_color = Color(0.0, 0.0, 0.0, 0.3)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="ButtonNormal"]
+bg_color = Color(0.09, 0.15, 0.16, 0.98)
+border_color = Color(0.25, 0.52, 0.5, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 14.0
+content_margin_top = 9.0
+content_margin_right = 14.0
+content_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxFlat" id="ButtonHover"]
+bg_color = Color(0.13, 0.23, 0.23, 1.0)
+border_color = Color(0.42, 0.81, 0.74, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 14.0
+content_margin_top = 9.0
+content_margin_right = 14.0
+content_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxFlat" id="ButtonPressed"]
+bg_color = Color(0.06, 0.12, 0.13, 1.0)
+border_color = Color(0.67, 0.82, 0.61, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 14.0
+content_margin_top = 9.0
+content_margin_right = 14.0
+content_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxFlat" id="InputField"]
+bg_color = Color(0.035, 0.055, 0.06, 1.0)
+border_color = Color(0.19, 0.38, 0.39, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 10.0
+content_margin_top = 7.0
+content_margin_right = 10.0
+content_margin_bottom = 7.0
+
+[resource]
+default_font_size = 16
+default_color = Color(0.82, 0.9, 0.88, 1.0)
+Button/colors/font_color = Color(0.82, 0.92, 0.89, 1.0)
+Button/colors/font_hover_color = Color(0.97, 1.0, 0.95, 1.0)
+Button/colors/font_pressed_color = Color(0.74, 0.94, 0.88, 1.0)
+Button/colors/font_disabled_color = Color(0.38, 0.47, 0.46, 1.0)
+Button/styles/normal = SubResource("ButtonNormal")
+Button/styles/hover = SubResource("ButtonHover")
+Button/styles/pressed = SubResource("ButtonPressed")
+Button/styles/disabled = SubResource("ButtonNormal")
+OptionButton/styles/normal = SubResource("ButtonNormal")
+OptionButton/styles/hover = SubResource("ButtonHover")
+OptionButton/styles/pressed = SubResource("ButtonPressed")
+Panel/styles/panel = SubResource("GlassPanel")
+PanelContainer/styles/panel = SubResource("GlassPanel")
+ItemList/styles/panel = SubResource("GlassPanel")
+ItemList/colors/font_color = Color(0.78, 0.87, 0.85, 1.0)
+ItemList/colors/font_selected_color = Color(0.98, 0.99, 0.91, 1.0)
+ItemList/colors/guide_color = Color(0.23, 0.4, 0.39, 0.45)
+ItemList/colors/selected_color = Color(0.17, 0.35, 0.32, 0.9)
+LineEdit/styles/normal = SubResource("InputField")
+LineEdit/styles/focus = SubResource("ButtonHover")
+LineEdit/colors/font_color = Color(0.88, 0.94, 0.91, 1.0)
+LineEdit/colors/caret_color = Color(0.51, 0.88, 0.78, 1.0)
+Label/colors/font_color = Color(0.82, 0.9, 0.88, 1.0)
+RichTextLabel/colors/default_color = Color(0.75, 0.84, 0.82, 1.0)

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="18" fill="#1b1f2a"/>
+  <path d="M64 16 L110 64 L64 112 L18 64 Z" fill="#7aa2ff" opacity="0.25"/>
+  <path d="M64 28 L96 64 L64 100 L32 64 Z" fill="#7aa2ff"/>
+  <text x="64" y="74" font-size="26" text-anchor="middle" fill="#f4f7ff" font-family="Arial, sans-serif">FA</text>
+</svg>
