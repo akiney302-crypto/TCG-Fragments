@@ -2,6 +2,45 @@
 
 Este documento registra las etapas implementadas en el prototipo, el motivo de cada una y su resultado verificable. Las entradas nuevas van arriba. En cada cambio futuro del proyecto se agregara una entrada con fecha, archivos/areas tocadas, razon de diseno, resultado y validacion. Tambien se revisara `CARD_ARCHETYPES_DECKS.md`; si cambia cualquier carta, arquetipo, regla de sinergia o mazo, se actualizara su inventario en ese mismo cambio.
 
+## 2026-10-06 - Reparacion de parser y consistencia de reglas
+
+### Causa del parser error
+La inspeccion encontró dos declaraciones de `run_ai_turn()` en `GameManager.gd`, una línea huérfana con indentación dentro del bloque AI y mezcla de tabs/espacios entre código heredado y agregado. El contrato de `end_turn()` tampoco coincidía con la llamada UI que esperaba un resultado booleano y un índice de jugador. Se dejó una sola función AI, se alinearon firmas/llamadas y se normalizaron `GameManager.gd` y `tests/test_runner.gd` a cuatro espacios.
+
+### Cambios mecánicos
+1. `SIGUIENTE FASE` solo avanza fase; `FIN DE TURNO` llama directamente a `GameManager.end_turn(requesting_player_index)`, que valida el jugador activo y arranca el robo del siguiente turno.
+2. La IA completa robo, ambas colocaciones, ataques y fin de turno desde `GameManager.run_ai_turn()`; una moneda que da iniciativa a la IA usa el mismo flujo.
+3. Las unidades se marcan `summoned_this_turn`; RuleManager bloquea su ataque hasta el siguiente turno salvo etiqueta HASTE.
+4. TROOP/CHAMPION entran al campo; TRUTH/SECRETS resuelven su efecto y pasan al cementerio. Whisper Secret y Mire Tide usan `destroy_target` en lugar del placeholder antiguo.
+5. Se completaron efectos de curacion, vida maxima, dano, destruccion, robo, descarte y robo de mano; las acciones de zona pasan por GameManager.
+6. Se aplica `MAX_HAND_SIZE` al robo normal, robo por efectos y robo de cartas.
+7. La UI permite elegir unidades rivales para ataque y objetivos de efecto, y descartar mediante GameManager sin mutar zonas directamente.
+8. El smoke runner ahora comprueba fin directo, fases, summon sickness, ataque a unidad, Truth/Secrets, tope de mano y robo en el turno entrante.
+9. Se sincronizo el catalogo fallback de `CatalogManager` con el efecto `destroy_target` de Whisper Secret para que el modo de reserva no recupere el placeholder.
+
+### Validacion
+- `get_errors`: sin errores en el proyecto.
+- Barridos estáticos: sin clases globales ni funciones duplicadas, sin mezcla de tabs/espacios y rutas de escena/@onready completas.
+- Godot no esta disponible en PATH; no se pudo ejecutar `test_runner.gd` ni confirmar import/runtime en Godot 4.7.
+
+## 2026-10-06 - Turnos, mesa y feedback de partida
+
+### Cambios realizados
+1. Se reemplazaron las fases anteriores por `DRAW`, `PLACEMENT_1`, `ATTACK`, `PLACEMENT_2` y `END_TURN`. Al entrar a DRAW, solo el jugador activo reinicia ataques, gana energia y roba.
+2. Se restringieron colocacion/descarte a las dos fases de colocacion y combate a ATTACK. El turno siguiente empieza con su propia fase de robo; ya no se roban cartas ni se reinicia a ambos jugadores al terminar.
+3. Se reordeno la mesa para mostrar vida/energia/mano rival arriba, campo rival y propio con cartas visibles, recursos propios aparte, mano desplazable y un reverso/conteo del mazo mas descarte abajo.
+4. Las cartas de campo usan la plantilla compartida a 126x172; la mano mantiene desplazamiento horizontal. Los contadores muestran HP/energia y cantidad de cartas rivales en mano.
+5. Se agrego una cola visual de traslados DECK/HAND/FIELD/GRAVEYARD; la instancia final se oculta durante el tween. Incluye robo enemigo boca abajo, robo robado entre manos y tokens entrando al campo.
+6. La moneda se representa con caras originales, giros, arco y caida; el resultado aun determina la iniciativa real.
+7. Escape abre pausa; continuar reanuda y abandonar solicita confirmacion antes de regresar al menu.
+8. `SoulAudio.gd` sintetiza audio PCM corto al vuelo para barajar, invocar, dano, destruccion, descarte, efecto y lanzamiento/caida de moneda, sin binarios de terceros.
+9. Se amplió el smoke runner para comprobar el robo de turno, las fases y las acciones permitidas/prohibidas.
+
+### Validacion
+- El analisis estatico global y las referencias de escena/scripts no reportan errores.
+- Se verifico la integridad JSON/SVG y el flujo de señales de movimiento.
+- Godot 4.7 no esta instalado/disponible en PATH; el smoke test y la reproduccion audiovisual real quedan pendientes de importar el proyecto en el motor.
+
 ## 2026-10-06 - Biblia visual y reparacion de escenas
 
 ### Integracion de la Biblia

@@ -43,7 +43,7 @@ func _create_default_catalog() -> void:
         CardData.from_dictionary({"id": "sunwisp", "name": "Sunwisp", "type": "TROOP", "cost": 1, "attack": 1, "hp": 2, "text": "Light support.", "effect": {"type": "heal_player", "amount": 1}}),
         CardData.from_dictionary({"id": "spire_guard", "name": "Spire Guard", "type": "CHAMPION", "cost": 4, "attack": 3, "hp": 5, "text": "A durable field leader.", "effect": {"type": "max_hp", "amount": 1}}),
         CardData.from_dictionary({"id": "lunar_truth", "name": "Lunar Truth", "type": "TRUTH", "cost": 2, "attack": 0, "hp": 0, "text": "Gain 2 life.", "effect": {"type": "heal_player", "amount": 2}}),
-        CardData.from_dictionary({"id": "whisper_secret", "name": "Whisper Secret", "type": "SECRETS", "cost": 3, "attack": 0, "hp": 0, "text": "Secret effect placeholder.", "effect": {"type": "destroy_on_destroy"}}),
+        CardData.from_dictionary({"id": "whisper_secret", "name": "Whisper Secret", "type": "SECRETS", "cost": 3, "attack": 0, "hp": 0, "text": "Destroy a chosen enemy unit.", "effect": {"type": "destroy_target"}}),
     ]
     for card in cards:
         index_by_id[card.id] = card

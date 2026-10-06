@@ -63,9 +63,9 @@
       "cost": 3,
       "attack": 0,
       "hp": 0,
-      "text": "Placeholder secret effect.",
+      "text": "Destroy a chosen enemy unit.",
       "max_copies": 3,
-      "effect": { "type": "destroy_on_destroy" },
+      "effect": { "type": "destroy_target" },
       "art_path": "",
       "archetype": "VOID",
       "archetype_tags": ["SECRET", "STEALTH"]
@@ -119,9 +119,9 @@
       "cost": 2,
       "attack": 0,
       "hp": 0,
-      "text": "A hidden effect that delays the enemy.",
+      "text": "Destroy a chosen enemy unit from the shadows.",
       "max_copies": 3,
-      "effect": { "type": "destroy_on_destroy" },
+      "effect": { "type": "destroy_target" },
       "art_path": "",
       "archetype": "VOID",
       "archetype_tags": ["DARK", "CONTROL"]

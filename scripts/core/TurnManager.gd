@@ -3,32 +3,28 @@ class_name TurnManager
 
 var current_turn: int = 1
 var active_player_index: int = 0
-var phase: String = "START"
+var phase: String = "DRAW"
 var phases: Array[String] = GameRules.TURN_PHASES
 
 func begin_turn() -> void:
-    phase = "START"
+    phase = "DRAW"
     current_turn = max(1, current_turn)
 
-func advance_phase() -> void:
+func advance_phase() -> String:
     var idx: int = phases.find(phase)
     if idx == -1:
-        phase = "START"
-        return
+        phase = "DRAW"
+        return phase
     if idx < phases.size() - 1:
         phase = phases[idx + 1]
-    else:
-        phase = "START"
-        current_turn += 1
+    return phase
 
 func end_turn() -> void:
-    active_player_index = 1 - active_player_index
-    phase = "START"
-    current_turn += 1
+    start_next_turn()
 
 func start_next_turn() -> void:
     active_player_index = 1 - active_player_index
-    phase = "START"
+    phase = "DRAW"
     current_turn += 1
 
 func get_active_player_name(player_names: Array[String]) -> String:

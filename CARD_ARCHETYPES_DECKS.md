@@ -109,11 +109,11 @@ No hay penalizacion por combinar familias en un mazo; los presets solo usan una 
 | Sunwisp | TROOP | 1/1/2 | 3 | SOLAR: LIGHT, HEALER | Al jugar, cura 1 HP al jugador. |
 | Spire Guard | CHAMPION | 4/3/5 | 1 | WARDEN: PROTECTOR, TANK | Al jugar, aumenta HP maximo del jugador en 1. |
 | Lunar Truth | TRUTH | 2/0/0 | 3 | SOLAR: LIGHT, SUPPORT | Restaura 2 HP al jugador. |
-| Whisper Secret | SECRETS | 3/0/0 | 3 | VOID: SECRET, STEALTH | `destroy_on_destroy` esta preparado, pero es un marcador sin resolucion completa. |
+| Whisper Secret | SECRETS | 3/0/0 | 3 | VOID: SECRET, STEALTH | Destruye una unidad rival seleccionada al jugarse. |
 | Stone Sentinel | TROOP | 3/3/4 | 3 | WARDEN: STONE, DEFENDER | Guardian resistente. Sin efecto. |
 | Glass Rusher | TROOP | 2/4/1 | 3 | EMBER: FIRE, AGGRESSIVE | Atacante explosivo y fragil. Sin efecto. |
 | Sacred Bloom | TRUTH | 1/0/0 | 3 | SOLAR: LIGHT, RECOVERY | Cura 1 HP al jugador. |
-| Mire Tide | SECRETS | 2/0/0 | 3 | VOID: DARK, CONTROL | El texto promete retrasar al enemigo; el efecto actual es solo marcador `destroy_on_destroy`. |
+| Mire Tide | SECRETS | 2/0/0 | 3 | VOID: DARK, CONTROL | Destruye una unidad rival seleccionada al jugarse. |
 | Radiant Guardian | CHAMPION | 5/4/6 | 1 | SOLAR: LIGHT, DEFENDER | Al jugar, aumenta HP maximo del jugador en 2. |
 | Drift Scout | TROOP | 1/2/2 | 3 | AETHER: SWIFT, RANGED | Unidad rapida de apoyo. Sin efecto. |
 | Moonlit Oath | TRUTH | 3/0/0 | 3 | AETHER: RITUAL, SUPPORT | Aumenta HP maximo del jugador en 2. |

@@ -12,10 +12,12 @@ Fragmenta Animae is a Godot 4.x TCG prototype built around a clean data/state/ru
 
 ## Core rules
 
-- 20-card deck, 5-card opening hand
+- 20-card deck, 5-card opening hand plus the active player's turn-start draw
 - 20 HP, energy up to 10
 - max 5 units on field
-- turn phases: START, MAIN, BATTLE, END
+- turn phases: DRAW, PLACEMENT_1, ATTACK, PLACEMENT_2, END_TURN
+- summoned units cannot attack until their next turn unless tagged HASTE
+- one Champion per deck; hand limit applies to normal and effect draws
 - card types: TROOP, CHAMPION, TRUTH, SECRETS
 - copy limits: TROOP <= 3, CHAMPION <= 1, TRUTH/SECRETS <= 3
 
@@ -40,6 +42,9 @@ This workspace does not currently include a Godot runtime, so the project can be
 - [x] Deck save/load flow scaffolded
 - [x] Champion-focused archetype synergy foundation and four 20-card starter lists
 - [x] Active deck selection, Knight beginner deck, optional Champion variants, and coin-toss initiative
+- [x] Five-phase turns, visible card transitions, opponent hand count, procedural event audio, and escape/pause flow
+- [x] Phase-gated combat, summon sickness, targeted enemy-unit combat/effects, spell-to-graveyard resolution, and hand cap
+- [x] Direct End Turn action, complete AI phase loop, and regression checks for turn/zone rules
 - [x] Test runner scaffold created
 - [ ] Full runtime verification requires a Godot 4.x binary in the environment
 
@@ -50,4 +55,5 @@ This workspace does not currently include a Godot runtime, so the project can be
 - `resources/decks/starter_decks.json` contains Knight, Dragon, Pirate, and Mech starter lists. The deck editor loads presets or saved decks and saves the chosen deck as active for the next match.
 - Every deck must contain one Champion. The Dragon, Pirate, and Mech families each have two extra optional Champions that the player can add from the catalog.
 - Every match begins with a heads-or-tails choice to decide which side takes the opening action.
-- `art/ui/` contains the shared Soulglass theme, faceted backgrounds, card frames, type sigils, soul-core placeholder, and card back used across the interface (eleven original SVG assets).
+- `art/ui/` contains the shared Soulglass theme, faceted backgrounds, card frames, type sigils, coin faces, soul-core placeholder, and card back used across the interface (thirteen original SVG assets).
+- `scripts/ui/SoulAudio.gd` synthesizes short procedural sounds for shuffle, summon, damage, destruction, effects, discard, and the coin toss.

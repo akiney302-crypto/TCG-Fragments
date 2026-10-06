@@ -80,15 +80,109 @@ func _init() -> void:
 
     var manager := GameManager.new()
     manager.catalog = catalog
-	manager.start_new_game(DeckSaveManager.load_starter_deck("knight_starter"), 0)
+    manager.start_new_game(DeckSaveManager.load_starter_deck("knight_starter"), 0)
 
-    if manager.player.hand.size() != GameRules.STARTING_HAND_SIZE:
-        push_error("Opening hand size mismatch.")
+    var expected_start_hand: int = GameRules.STARTING_HAND_SIZE + GameRules.TURN_START_DRAW_COUNT
+    if not _assert_test(manager.player.hand.size() == expected_start_hand, "Opening hand plus turn draw mismatch."):
+        quit()
+        return
+    if not _assert_test(manager.turn_manager.phase == "DRAW" and manager.player.energy == 2, "A turn must begin in DRAW with one energy gain."):
+        quit()
+        return
+
+    var test_card := CardInstance.new(catalog.get_card_by_id("knight_squire"), "player")
+    test_card.set_zone("HAND")
+    manager.player.hand.append(test_card)
+    manager.player.energy = manager.player.max_energy
+    if not _assert_test(not manager.play_card_from_hand(test_card)["ok"], "Playing cards must be blocked during DRAW."):
+        quit()
+        return
+
+    manager.advance_game_phase()
+    if not _assert_test(manager.turn_manager.phase == "PLACEMENT_1" and manager.play_card_from_hand(test_card)["ok"], "PLACEMENT_1 should allow playing cards."):
+        quit()
+        return
+    if not _assert_test(not manager.attack(test_card, manager.enemy)["ok"], "Attacks must be blocked outside ATTACK."):
+        quit()
+        return
+
+    var enemy_target := CardInstance.new(catalog.get_card_by_id("knight_squire"), "enemy")
+    enemy_target.set_zone("FIELD")
+    manager.enemy.field.append(enemy_target)
+    var eligible_attacker := CardInstance.new(catalog.get_card_by_id("knight_veteran"), "player")
+    eligible_attacker.set_zone("FIELD")
+    eligible_attacker.summoned_this_turn = false
+    manager.player.field.append(eligible_attacker)
+    manager.advance_game_phase()
+    if not _assert_test(manager.turn_manager.phase == "ATTACK" and test_card.summoned_this_turn and not manager.attack(test_card, manager.enemy)["ok"], "A unit summoned this turn must not attack."):
+        quit()
+        return
+    if not _assert_test(manager.attack(eligible_attacker, enemy_target)["ok"] and manager.enemy.graveyard.has(enemy_target), "An eligible unit should attack and destroy a selected enemy unit."):
+        quit()
+        return
+    manager.advance_game_phase()
+    if not _assert_test(manager.turn_manager.phase == "PLACEMENT_2", "The second placement phase should follow combat."):
+        quit()
+        return
+
+    var spell := CardInstance.new(catalog.get_card_by_id("lunar_truth"), "player")
+    spell.set_zone("HAND")
+    manager.player.hand.append(spell)
+    var spell_result: Dictionary = manager.play_card_from_hand(spell)
+    if not _assert_test(spell_result["ok"] and spell.zone == "GRAVEYARD" and not manager.player.field.has(spell), "TRUTH cards should resolve and go to graveyard, not FIELD."):
+        quit()
+        return
+
+    var secret_target := CardInstance.new(catalog.get_card_by_id("knight_guard"), "enemy")
+    secret_target.set_zone("FIELD")
+    manager.enemy.field.append(secret_target)
+    var secret := CardInstance.new(catalog.get_card_by_id("whisper_secret"), "player")
+    secret.set_zone("HAND")
+    manager.player.hand.append(secret)
+    var secret_result: Dictionary = manager.play_card_from_hand(secret, secret_target)
+    if not _assert_test(secret_result["ok"] and secret.zone == "GRAVEYARD" and not manager.enemy.field.has(secret_target), "SECRETS should resolve their selected target and go to graveyard."):
+        quit()
+        return
+
+    manager.advance_game_phase()
+    if not _assert_test(manager.turn_manager.phase == "END_TURN", "The turn should reach END_TURN after the second placement phase."):
+        quit()
+        return
+    if not _assert_test(manager.end_turn(0) and manager.turn_manager.active_player_index == 1 and manager.turn_manager.phase == "DRAW", "End Turn should switch directly to the next player's draw phase."):
+        quit()
+        return
+    if not _assert_test(not manager.end_turn(0), "The inactive player must not end the opponent's turn."):
         quit()
         return
 
     if manager.enemy.hp != GameRules.STARTING_HP:
-        push_error("Enemy HP mismatch.")
+        push_error("A newly summoned unit must not deal attack damage.")
+        quit()
+        return
+
+    if manager.enemy.hand.size() != GameRules.OPENING_HAND_SIZE + GameRules.TURN_START_DRAW_COUNT:
+        push_error("The incoming active player should draw at turn start.")
+        quit()
+        return
+
+    if not _assert_test(manager.end_turn(1) and not test_card.summoned_this_turn and RuleManager.can_attack(test_card, manager.player), "Summon sickness should expire at the owner's next turn."):
+        quit()
+        return
+
+    var capped_hand := PlayerState.new("Hand cap test")
+    for index in range(GameRules.MAX_HAND_SIZE):
+        var held_card := CardInstance.new(catalog.get_card_by_id("knight_squire"), "player")
+        held_card.set_zone("HAND")
+        capped_hand.hand.append(held_card)
+    capped_hand.deck.append(CardInstance.new(catalog.get_card_by_id("knight_squire"), "player"))
+    if not _assert_test(capped_hand.draw_cards(1).is_empty() and capped_hand.hand.size() == GameRules.MAX_HAND_SIZE, "Drawing must respect MAX_HAND_SIZE."):
+        quit()
+        return
+
+    var direct_end_manager := GameManager.new()
+    direct_end_manager.catalog = catalog
+    direct_end_manager.start_new_game(DeckSaveManager.load_starter_deck("knight_starter"), 0)
+    if not _assert_test(direct_end_manager.end_turn(0) and direct_end_manager.turn_manager.active_player_index == 1, "End Turn should work directly without walking through phases."):
         quit()
         return
 

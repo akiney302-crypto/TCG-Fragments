@@ -19,6 +19,8 @@ static func can_attack(attacker: CardInstance, player: PlayerState) -> bool:
         return false
     if attacker.attacks_remaining <= 0:
         return false
+    if attacker.summoned_this_turn and not attacker.card_data.archetype_tags.has("HASTE"):
+        return false
     if player.field.has(attacker) == false:
         return false
     return true

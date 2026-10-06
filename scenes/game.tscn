@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/game.gd" id="1_vh8l8"]
 [ext_resource type="Theme" path="res://art/ui/fragmenta_theme.tres" id="2_theme"]
 [ext_resource type="Texture2D" path="res://art/ui/soulglass_backdrop.svg" id="3_backdrop"]
+[ext_resource type="Texture2D" path="res://art/ui/coin_heads.svg" id="4_coin_heads"]
+[ext_resource type="Texture2D" path="res://art/ui/coin_tails.svg" id="5_coin_tails"]
+[ext_resource type="Texture2D" path="res://art/ui/card_back.svg" id="6_card_back"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,16 +38,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 18
-theme_override_constants/margin_top = 14
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 18
-theme_override_constants/margin_bottom = 14
+theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 4
 
 [node name="TopBar" type="Panel" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TopBar"]
@@ -59,14 +63,28 @@ layout_mode = 2
 
 [node name="PlayerHP" type="Label" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer/PlayerInfo"]
 layout_mode = 2
-text = "HP: 20/20"
+text = "RIVAL  |  HP 20/20"
+
+[node name="OpponentEnergy" type="Label" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer/PlayerInfo"]
+layout_mode = 2
+text = "ENERGIA 1/10"
 
 [node name="EnemyInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer"]
 layout_mode = 2
 
 [node name="EnemyHP" type="Label" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer/EnemyInfo"]
+visible = false
 layout_mode = 2
-text = "HP: 20/20"
+text = "TU  |  HP 20/20"
+
+[node name="PlayerEnergy" type="Label" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer/EnemyInfo"]
+visible = false
+layout_mode = 2
+text = "ENERGIA 1/10"
+
+[node name="OpponentHand" type="Label" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer/EnemyInfo"]
+layout_mode = 2
+text = "RIVAL: 5 EN MANO"
 
 [node name="TurnInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer"]
 layout_mode = 2
@@ -80,38 +98,66 @@ layout_mode = 2
 
 [node name="PhaseLabel" type="Label" parent="MarginContainer/VBoxContainer/TopBar/HBoxContainer/PhaseInfo"]
 layout_mode = 2
-text = "Phase: START"
+text = "ROBO"
+horizontal_alignment = 2
 
 [node name="CenterArea" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 2
 
 [node name="EnemyFieldPanel" type="Panel" parent="MarginContainer/VBoxContainer/CenterArea"]
-custom_minimum_size = Vector2(0, 104)
+custom_minimum_size = Vector2(0, 176)
 layout_mode = 2
 
-[node name="EnemyFieldContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterArea/EnemyFieldPanel"]
+[node name="EnemyFieldContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterArea/EnemyFieldPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 6
+alignment = 1
 
 [node name="FieldPanel" type="Panel" parent="MarginContainer/VBoxContainer/CenterArea"]
-custom_minimum_size = Vector2(0, 104)
+custom_minimum_size = Vector2(0, 176)
 layout_mode = 2
 
-[node name="FieldContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterArea/FieldPanel"]
+[node name="FieldContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterArea/FieldPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="PlayerResources" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ResourcesRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PlayerResources"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 2
+
+[node name="PlayerHealth" type="Label" parent="MarginContainer/VBoxContainer/PlayerResources/ResourcesRow"]
+layout_mode = 2
+text = "VIDA 20/20"
+
+[node name="PlayerEnergyCurrent" type="Label" parent="MarginContainer/VBoxContainer/PlayerResources/ResourcesRow"]
+layout_mode = 2
+text = "ENERGIA 1/10"
 
 [node name="HandPanel" type="Panel" parent="MarginContainer/VBoxContainer/CenterArea"]
-custom_minimum_size = Vector2(0, 198)
+custom_minimum_size = Vector2(0, 174)
 layout_mode = 2
 
 [node name="HandScroll" type="ScrollContainer" parent="MarginContainer/VBoxContainer/CenterArea/HandPanel"]
@@ -125,12 +171,12 @@ horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
 
 [node name="HandContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterArea/HandPanel/HandScroll"]
-layout_mode = 1
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
 [node name="LogPanel" type="Panel" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
 [node name="LogLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/LogPanel"]
@@ -144,7 +190,7 @@ bbcode_enabled = true
 text = "Game log"
 
 [node name="BottomBar" type="Panel" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 
 [node name="ActionButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar"]
@@ -154,22 +200,50 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="DeckCount" type="Label" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
+layout_mode = 2
+text = "MAZO 20"
+
+[node name="DeckPileIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
+custom_minimum_size = Vector2(22, 34)
+layout_mode = 2
+texture = ExtResource("6_card_back")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GraveyardCount" type="Label" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
+layout_mode = 2
+text = "DESCARTE 0"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
 layout_mode = 2
-text = "Play"
+text = "JUGAR"
 
 [node name="DiscardButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
 layout_mode = 2
-text = "Discard"
+text = "DESCARTAR"
 
 [node name="AttackButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
 layout_mode = 2
-text = "Attack"
+text = "ATACAR"
 
 [node name="EndTurnButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
 layout_mode = 2
-text = "End Turn"
+text = "SIGUIENTE FASE"
+
+[node name="FinishTurnButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
+layout_mode = 2
+text = "FIN DE TURNO"
+
+[node name="PauseButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar/ActionButtons"]
+layout_mode = 2
+text = "Pausa"
 
 [node name="CoinFlipOverlay" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -198,13 +272,21 @@ alignment = 1
 
 [node name="Title" type="Label" parent="CoinFlipOverlay/CenterContainer/Panel/Content"]
 layout_mode = 2
-text = "Who goes first?"
+text = "QUIEN EMPIEZA?"
 horizontal_alignment = 1
 
 [node name="Result" type="Label" parent="CoinFlipOverlay/CenterContainer/Panel/Content"]
 layout_mode = 2
-text = "Choose heads or tails."
+text = "Elige cara o cruz."
 horizontal_alignment = 1
+
+[node name="CoinVisual" type="TextureRect" parent="CoinFlipOverlay/CenterContainer/Panel/Content"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("4_coin_heads")
+expand_mode = 1
+stretch_mode = 5
+size_flags_horizontal = 4
 
 [node name="ChoiceButtons" type="HBoxContainer" parent="CoinFlipOverlay/CenterContainer/Panel/Content"]
 layout_mode = 2
@@ -212,8 +294,65 @@ alignment = 1
 
 [node name="HeadsButton" type="Button" parent="CoinFlipOverlay/CenterContainer/Panel/Content/ChoiceButtons"]
 layout_mode = 2
-text = "Heads"
+text = "CARA"
 
 [node name="TailsButton" type="Button" parent="CoinFlipOverlay/CenterContainer/Panel/Content/ChoiceButtons"]
 layout_mode = 2
-text = "Tails"
+text = "CRUZ"
+
+[node name="AnimationLayer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+z_index = 20
+
+[node name="PauseOverlay" type="ColorRect" parent="."]
+visible = false
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025, 0.035, 0.075, 0.88)
+
+[node name="PauseCenter" type="CenterContainer" parent="PauseOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PausePanel" type="PanelContainer" parent="PauseOverlay/PauseCenter"]
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 2
+
+[node name="PauseContent" type="VBoxContainer" parent="PauseOverlay/PauseCenter/PausePanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="PauseTitle" type="Label" parent="PauseOverlay/PauseCenter/PausePanel/PauseContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "PARTIDA EN PAUSA"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseOverlay/PauseCenter/PausePanel/PauseContent"]
+layout_mode = 2
+text = "Continuar"
+
+[node name="AbandonButton" type="Button" parent="PauseOverlay/PauseCenter/PausePanel/PauseContent"]
+layout_mode = 2
+text = "Abandonar partida"
+
+[node name="AbandonConfirm" type="ConfirmationDialog" parent="."]
+title = "Abandonar partida"
+dialog_text = "La partida actual se perdera. Quieres volver al menu?"
+ok_button_text = "Abandonar"
+cancel_button_text = "Seguir jugando"

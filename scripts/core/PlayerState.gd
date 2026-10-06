@@ -36,7 +36,7 @@ func reset_stats() -> void:
 func draw_cards(amount: int) -> Array[CardInstance]:
     var drawn: Array[CardInstance] = []
     var remaining: int = amount
-    while remaining > 0 and deck.size() > 0:
+    while remaining > 0 and deck.size() > 0 and hand.size() < GameRules.MAX_HAND_SIZE:
         var card: CardInstance = deck.pop_front()
         card.set_zone("HAND")
         hand.append(card)
